@@ -220,25 +220,44 @@ class Weapons3DEngine {
       this.lastMousePos = { x: e.clientX, y: e.clientY };
     });
 
-    // Touch Support
+    // Touch Support with Two-Finger Pinch Zoom
+    c.style.touchAction = "none";
+    let initialPinchDist = 0;
+
     c.addEventListener("touchstart", (e) => {
       if (e.touches.length === 1) {
         this.isDragging = true;
         this.lastMousePos = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      } else if (e.touches.length === 2) {
+        this.isDragging = false;
+        initialPinchDist = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
       }
     }, { passive: true });
 
     c.addEventListener("touchmove", (e) => {
-      if (!this.isDragging || e.touches.length !== 1) return;
-      const dx = e.touches[0].clientX - this.lastMousePos.x;
-      const dy = e.touches[0].clientY - this.lastMousePos.y;
-      this.rotation.y += dx * 0.01;
-      this.rotation.x += dy * 0.01;
-      this.lastMousePos = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      if (e.touches.length === 1 && this.isDragging) {
+        const dx = e.touches[0].clientX - this.lastMousePos.x;
+        const dy = e.touches[0].clientY - this.lastMousePos.y;
+        this.rotation.y += dx * 0.01;
+        this.rotation.x += dy * 0.01;
+        this.lastMousePos = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      } else if (e.touches.length === 2 && initialPinchDist > 0) {
+        const currentDist = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+        const factor = (initialPinchDist - currentDist) * 0.008;
+        this.zoom = Math.max(1.8, Math.min(8.0, this.zoom + factor));
+        initialPinchDist = currentDist;
+      }
     }, { passive: true });
 
     c.addEventListener("touchend", () => {
       this.isDragging = false;
+      initialPinchDist = 0;
     });
 
     // Zoom

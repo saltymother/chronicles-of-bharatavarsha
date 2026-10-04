@@ -740,6 +740,7 @@ body {
   width: 100%;
   height: 100%;
   display: block;
+  touch-action: none;
 }
 
 .armory-toolbar {
@@ -1239,6 +1240,43 @@ body {
     height: 150px;
     bottom: 12px;
     right: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  .brand-text h1 {
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+  }
+  .brand-container {
+    gap: 0.5rem;
+  }
+  .ashoka-emblem-icon {
+    width: 32px;
+    height: 32px;
+  }
+  .nav-tabs {
+    gap: 0.25rem;
+  }
+  .nav-btn {
+    padding: 0.4rem 0.65rem;
+    font-size: 0.8rem;
+  }
+  .canvas-container {
+    height: 320px;
+  }
+  .weapon-3d-canvas-wrap {
+    height: 300px;
+  }
+  .timeline-bar-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .timeline-slider-card {
+    padding: 0.8rem;
+  }
+  .court-room-content {
+    padding: 1rem;
   }
 }
 

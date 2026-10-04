@@ -19,3 +19,14 @@
   - Engineered 3D ancient arms and armor viewer using Three.js (Khanda, Urumi, Talwar, Chakram).
   - Integrated procedural Web Audio war-drum rhythms and battlefield soundscapes.
   - Configured GitHub Actions automated Pages deployment workflow (`.github/workflows/deploy.yml`) and `.nojekyll`.
+
+## [v1.1.0] - 2026-10-04
+- **Commit:** Pending Commit (Signed)
+- **Author:** saltymother <saltymother@users.noreply.github.com>
+- **Type:** Feature | Mobile Responsive Architecture & Touch Controls
+- **Status:** Deployed & Verified
+- **GitHub Pages:** https://saltymother.github.io/chronicles-of-bharatavarsha/
+- **Summary:**
+  - Implemented multi-touch drag gestures and two-finger pinch-to-zoom for the 3D Armory WebGL viewer with `touch-action: none`.
+  - Added responsive media queries for `< 600px` mobile viewports preventing header/nav crowding and map canvas overflow.
+  - Linked GitHub Pages live demo badge and verified URL in README.md.

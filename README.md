@@ -1,12 +1,15 @@
 # 🇮🇳 Chronicles of Bharatavarsha (320 BCE — 2026 CE)
 
-> **Epic Historical Exploration Engine of the Indian Subcontinent**  
-> Featuring 3D Gilded Picture Frames, Subcontinent Territorial Annexation Engine, GTA V Style Radar Mini-Map HUD, and a Pure WebGL 3D Imperial Armory.
-
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Demo-brightgreen?logo=github)](https://saltymother.github.io/chronicles-of-bharatavarsha/)
 ![Chronicles of Bharatavarsha](https://img.shields.io/badge/History-Indian%20Subcontinent-orange.svg)
 ![WebGL 3D](https://img.shields.io/badge/3D%20Engine-Pure%20WebGL-blue.svg)
 ![Audio Engine](https://img.shields.io/badge/Audio-Web%20Audio%20API-green.svg)
 ![License](https://img.shields.io/badge/License-MIT-purple.svg)
+
+🌐 **Live GitHub Pages Application:** [https://saltymother.github.io/chronicles-of-bharatavarsha/](https://saltymother.github.io/chronicles-of-bharatavarsha/)
+
+> **Epic Historical Exploration Engine of the Indian Subcontinent**  
+> Featuring 3D Gilded Picture Frames, Subcontinent Territorial Annexation Engine, GTA V Style Radar Mini-Map HUD, and a Pure WebGL 3D Imperial Armory.
 
 ---
 
