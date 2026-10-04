@@ -1,0 +1,1275 @@
+/* ==========================================================================
+   CHRONICLES OF BHARATAVARSHA: 320 BCE — 2026 CE
+   Grand Imperial Stylesheet with 3D Picture Frames, GTA V Radar HUD & Glassmorphism
+   ========================================================================== */
+
+:root {
+  --bg-deep: #06090f;
+  --bg-surface: #0c121d;
+  --bg-card: rgba(18, 25, 38, 0.78);
+  --bg-card-hover: rgba(25, 36, 56, 0.92);
+  --border-gold: rgba(217, 119, 6, 0.45);
+  --border-gold-bright: #f59e0b;
+  --gold-glow: rgba(245, 158, 11, 0.25);
+  
+  --accent-saffron: #f97316;
+  --accent-gold: #fbbf24;
+  --accent-crimson: #dc2626;
+  --accent-emerald: #10b981;
+  --accent-cyan: #38bdf8;
+  --accent-royal-blue: #3b82f6;
+
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  
+  --font-display: 'Cinzel', 'Trajan Pro', 'Georgia', serif;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+
+  --hud-bg: rgba(6, 12, 22, 0.88);
+  --hud-border: rgba(56, 189, 248, 0.4);
+  --hud-cyan: #38bdf8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-deep);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(217, 119, 6, 0.12) 0%, transparent 65%),
+    radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 0% 50%, rgba(220, 38, 38, 0.06) 0%, transparent 45%);
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   NAVIGATION & IMPERIAL HEADER
+   ========================================================================== */
+
+.imperial-header {
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(8, 13, 22, 0.85);
+  border-bottom: 1px solid var(--border-gold);
+  padding: 0.75rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+}
+
+.brand-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ashoka-emblem-icon {
+  width: 42px;
+  height: 42px;
+  fill: var(--accent-gold);
+  filter: drop-shadow(0 0 8px var(--border-gold-bright));
+  animation: emblem-glow 4s ease-in-out infinite alternate;
+}
+
+@keyframes emblem-glow {
+  0% { transform: scale(1); filter: drop-shadow(0 0 6px var(--border-gold)); }
+  100% { transform: scale(1.05); filter: drop-shadow(0 0 14px var(--border-gold-bright)); }
+}
+
+.brand-text h1 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  background: linear-gradient(135deg, #fffbeb 0%, #fbbf24 50%, #d97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 10px rgba(245, 158, 11, 0.3);
+}
+
+.brand-text .subtitle {
+  font-size: 0.75rem;
+  color: var(--accent-cyan);
+  font-family: var(--font-mono);
+  letter-spacing: 0.1em;
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 0.5rem;
+  background: rgba(15, 23, 42, 0.75);
+  padding: 0.35rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-tab-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.5rem 1.1rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-tab-btn:hover {
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.nav-tab-btn.active {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+  color: #ffffff;
+  box-shadow: 0 2px 12px rgba(217, 119, 6, 0.45);
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-icon {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-main);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  transition: all 0.2s ease;
+}
+
+.btn-icon:hover {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: var(--accent-gold);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   APP VIEWS WRAPPER
+   ========================================================================== */
+
+.app-view {
+  display: none;
+  padding: 2rem;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.app-view.active {
+  display: block;
+  animation: fadeInView 0.4s ease-out;
+}
+
+@keyframes fadeInView {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================================================================
+   VIEW 1: 3D PICTURE FRAME DYNASTY GALLERY
+   ========================================================================== */
+
+.section-hero {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.section-hero h2 {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  background: linear-gradient(135deg, #ffffff 0%, #fbbf24 60%, #ea580c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.section-hero p {
+  color: var(--text-muted);
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 1rem;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 2.5rem;
+  perspective: 1500px; /* 3D Perspective for floating frames */
+}
+
+/* 3D Gilded Picture Frame Card */
+.picture-frame-container {
+  transform-style: preserve-3d;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+  cursor: pointer;
+}
+
+.picture-frame {
+  position: relative;
+  border-radius: 14px;
+  background: linear-gradient(145deg, #182234, #0b111b);
+  /* Ornate Gilded Gold Baroque Border */
+  border: 10px solid #78350f;
+  box-shadow: 
+    inset 0 0 15px rgba(0, 0, 0, 0.9),
+    0 10px 30px rgba(0, 0, 0, 0.7),
+    0 0 0 2px #d97706,
+    0 0 0 6px #451a03,
+    0 0 20px var(--gold-glow);
+  padding: 1.25rem;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+.picture-frame-container:hover .picture-frame {
+  box-shadow: 
+    inset 0 0 20px rgba(0, 0, 0, 0.9),
+    0 20px 45px rgba(0, 0, 0, 0.85),
+    0 0 0 3px #fbbf24,
+    0 0 0 7px #78350f,
+    0 0 35px rgba(245, 158, 11, 0.5);
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* Gilded Corner Filigree Embellishments */
+.frame-corner {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border: 3px solid #fbbf24;
+  z-index: 5;
+  pointer-events: none;
+}
+.corner-tl { top: 6px; left: 6px; border-right: none; border-bottom: none; }
+.corner-tr { top: 6px; right: 6px; border-left: none; border-bottom: none; }
+.corner-bl { bottom: 6px; left: 6px; border-right: none; border-top: none; }
+.corner-br { bottom: 6px; right: 6px; border-left: none; border-top: none; }
+
+/* Portrait Canvas Artwork in Picture Frame */
+.portrait-stage {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  border-radius: 8px;
+  background: radial-gradient(circle at 50% 35%, #2a3a54 0%, #0d1522 80%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 3D Depth Layer Inside Frame */
+.portrait-layer-art {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s ease;
+}
+
+.picture-frame-container:hover .portrait-layer-art {
+  transform: scale(1.06) translateZ(30px);
+}
+
+.monarch-svg-portrait {
+  width: 150px;
+  height: 150px;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.7));
+}
+
+.reign-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid var(--border-gold-bright);
+  color: var(--accent-gold);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+  backdrop-filter: blur(8px);
+}
+
+.dynasty-info {
+  margin-top: 1.2rem;
+}
+
+.dynasty-info .dynasty-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.dynasty-info .hindi-title {
+  font-size: 0.85rem;
+  color: var(--accent-gold);
+  font-family: var(--font-sans);
+}
+
+.monarch-lead {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--accent-cyan);
+  margin-top: 0.2rem;
+}
+
+.monarch-epithet {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 0.6rem;
+}
+
+.dynasty-meta-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.meta-chip {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.dynasty-desc {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.enter-frame-btn {
+  width: 100%;
+  background: linear-gradient(135deg, rgba(217, 119, 6, 0.85) 0%, rgba(180, 83, 9, 0.95) 100%);
+  border: 1px solid var(--accent-gold);
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  padding: 0.65rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.25s ease;
+}
+
+.enter-frame-btn:hover {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  box-shadow: 0 4px 20px rgba(245, 158, 11, 0.5);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   VIEW 2: SUBCONTINENT TERRITORIAL MAP & ANNEXATION ENGINE
+   ========================================================================== */
+
+.map-workspace {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.map-viewport-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
+}
+
+.map-header-bar {
+  padding: 0.75rem 1.25rem;
+  background: rgba(15, 23, 42, 0.9);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.map-title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.map-title-wrap h3 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--accent-gold);
+}
+
+.canvas-container {
+  position: relative;
+  width: 100%;
+  height: 580px;
+  background: #080c14;
+}
+
+#subcontinentMapCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.map-controls-float {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  z-index: 10;
+}
+
+.map-control-btn {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  width: 34px;
+  height: 34px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+
+.map-control-btn:hover {
+  background: var(--accent-gold);
+  color: #0f172a;
+}
+
+/* Timeline Scrubber Component */
+.timeline-scrubber-card {
+  margin-top: 1rem;
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+}
+
+.timeline-scrubber-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.active-year-display {
+  font-family: var(--font-mono);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  text-shadow: 0 0 10px rgba(245, 158, 11, 0.4);
+}
+
+.timeline-playback-btn-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.playback-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  padding: 0.35rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: all 0.2s ease;
+}
+
+.playback-btn:hover {
+  background: rgba(245, 158, 11, 0.25);
+  border-color: var(--accent-gold);
+}
+
+.timeline-slider-range {
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: #1e293b;
+  outline: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+}
+
+.timeline-slider-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #f59e0b;
+  cursor: pointer;
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 10px #f59e0b;
+  transition: transform 0.1s ease;
+}
+
+.timeline-slider-range::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.timeline-milestones-ticks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+
+/* Side Annexation & Territorial Ledger Panel */
+.annexation-ledger-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.ledger-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.8rem;
+}
+
+.ledger-header .badge {
+  display: inline-block;
+  background: rgba(220, 38, 38, 0.2);
+  border: 1px solid rgba(220, 38, 38, 0.4);
+  color: #f87171;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  margin-bottom: 0.4rem;
+}
+
+.ledger-header h4 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: #ffffff;
+}
+
+.annexation-box {
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 8px;
+  padding: 0.9rem;
+  border-left: 4px solid var(--accent-emerald);
+}
+
+.annexation-box.loss {
+  border-left-color: var(--accent-crimson);
+}
+
+.annexation-box-label {
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  color: var(--accent-emerald);
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.annexation-box.loss .annexation-box-label {
+  color: var(--accent-crimson);
+}
+
+.annexation-box-content {
+  font-size: 0.85rem;
+  color: #e2e8f0;
+}
+
+.ledger-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.ledger-field-name {
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.ledger-field-val {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+}
+
+/* ==========================================================================
+   VIEW 3: 3D IMPERIAL ARMORY (WEAPONS DECK)
+   ========================================================================== */
+
+.armory-layout {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 2rem;
+  align-items: start;
+}
+
+.weapon-stage-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
+  position: relative;
+}
+
+.weapon-stage-header {
+  padding: 1rem 1.5rem;
+  background: rgba(15, 23, 42, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.weapon-selector-strip {
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  padding: 0.8rem 1.2rem;
+  background: rgba(10, 16, 26, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.weapon-chip-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.weapon-chip-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.weapon-chip-btn.active {
+  background: linear-gradient(135deg, #d97706, #92400e);
+  color: #ffffff;
+  border-color: var(--accent-gold);
+  box-shadow: 0 2px 10px rgba(217, 119, 6, 0.4);
+}
+
+.weapon-3d-canvas-wrap {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  background: radial-gradient(circle at 50% 50%, #151e2f 0%, #070b12 85%);
+  cursor: grab;
+}
+
+.weapon-3d-canvas-wrap:active {
+  cursor: grabbing;
+}
+
+#weapon3DCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.armory-toolbar {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  backdrop-filter: blur(12px);
+  z-index: 10;
+}
+
+.armory-tool-group {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.armory-action-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s ease;
+}
+
+.armory-action-btn:hover {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: var(--accent-gold);
+}
+
+.armory-action-btn.battle-strike-btn {
+  background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+  border-color: #ef4444;
+  color: #ffffff;
+  box-shadow: 0 2px 10px rgba(220, 38, 38, 0.4);
+}
+
+.armory-action-btn.battle-strike-btn:hover {
+  box-shadow: 0 4px 18px rgba(220, 38, 38, 0.6);
+  transform: translateY(-1px);
+}
+
+/* Weapon Dossier Side Card */
+.weapon-dossier-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  border-radius: 16px;
+  padding: 1.75rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.weapon-title-block h3 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: #ffffff;
+}
+
+.weapon-title-block .hindi-subtitle {
+  font-size: 0.95rem;
+  color: var(--accent-gold);
+}
+
+.weapon-specs-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.weapon-specs-table tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.weapon-specs-table td {
+  padding: 0.5rem 0;
+  font-size: 0.82rem;
+}
+
+.weapon-specs-table td:first-child {
+  color: var(--text-muted);
+  width: 35%;
+  font-family: var(--font-mono);
+}
+
+.weapon-specs-table td:last-child {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* Tactical Stat Bars */
+.stat-bar-row {
+  margin-top: 0.5rem;
+}
+
+.stat-label-wrap {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  margin-bottom: 0.2rem;
+}
+
+.stat-track {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.stat-fill {
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #f59e0b, #ea580c);
+}
+
+/* ==========================================================================
+   VIEW 4: EAST INDIA COMPANY EXPANSION CHRONICLES
+   ========================================================================== */
+
+.eic-hero {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.eic-stages-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.eic-stages-timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 28px;
+  width: 2px;
+  background: linear-gradient(180deg, #dc2626 0%, #d97706 70%, #10b981 100%);
+}
+
+.eic-stage-item {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.stage-number-disc {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #182234;
+  border: 3px solid #dc2626;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 0 15px rgba(220, 38, 38, 0.4);
+  z-index: 2;
+}
+
+.stage-number-disc.independence {
+  border-color: #10b981;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+  background: #064e3b;
+}
+
+.eic-stage-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.eic-stage-card:hover {
+  transform: translateX(4px);
+  border-color: var(--accent-gold);
+}
+
+.eic-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.6rem;
+}
+
+.eic-card-header h4 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: #ffffff;
+}
+
+.eic-year-badge {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  background: rgba(245, 158, 11, 0.15);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+/* ==========================================================================
+   GTA V STYLE RADAR / MINI-MAP HUD WIDGET
+   ========================================================================== */
+
+.gtav-radar-hud {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 220px;
+  height: 220px;
+  z-index: 100;
+  background: transparent;
+  pointer-events: auto;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.9));
+}
+
+#gtavMiniMapCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: pointer;
+}
+
+.gtav-hud-bars {
+  position: absolute;
+  bottom: -22px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.hud-bar-slot {
+  width: 100%;
+  height: 5px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.hud-bar-inner {
+  height: 100%;
+  width: 85%;
+  background: linear-gradient(90deg, #10b981, #34d399); /* Health */
+}
+
+.hud-bar-inner.armor {
+  width: 95%;
+  background: linear-gradient(90deg, #38bdf8, #60a5fa); /* Armor */
+}
+
+.hud-bar-inner.special {
+  width: 70%;
+  background: linear-gradient(90deg, #fbbf24, #f59e0b); /* Gold */
+}
+
+.gtav-hud-coordinates {
+  position: absolute;
+  top: -24px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--accent-cyan);
+  background: rgba(6, 12, 22, 0.85);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.radar-expand-hint {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: #ffffff;
+  background: rgba(15, 23, 42, 0.7);
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   IMPERIAL COURT ROOM MODAL ("INSIDE THE PICTURE FRAME")
+   ========================================================================== */
+
+.court-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(4, 7, 12, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.court-modal-backdrop.open {
+  display: flex;
+  opacity: 1;
+}
+
+.court-modal-container {
+  width: 100%;
+  max-width: 1100px;
+  max-height: 90vh;
+  background: linear-gradient(145deg, #101927 0%, #070c14 100%);
+  border: 2px solid var(--border-gold-bright);
+  border-radius: 20px;
+  box-shadow: 
+    0 25px 60px rgba(0, 0, 0, 0.9),
+    0 0 50px rgba(245, 158, 11, 0.25);
+  overflow-y: auto;
+  position: relative;
+  animation: zoomModal 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes zoomModal {
+  from { transform: scale(0.9) translateY(20px); }
+  to { transform: scale(1) translateY(0); }
+}
+
+.court-modal-close-btn {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.court-modal-close-btn:hover {
+  background: #dc2626;
+  border-color: #ef4444;
+  transform: rotate(90deg);
+}
+
+.court-modal-body {
+  padding: 2.5rem;
+}
+
+.court-hero-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 2.5rem;
+  align-items: start;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 2rem;
+}
+
+.court-portrait-box {
+  background: radial-gradient(circle at 50% 40%, #1f2c42 0%, #0a111b 80%);
+  border: 4px solid #b45309;
+  border-radius: 14px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+.court-portrait-svg {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 1rem;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.8));
+}
+
+.royal-decree-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: #fef08a;
+  background: rgba(245, 158, 11, 0.08);
+  border-left: 4px solid var(--accent-gold);
+  padding: 1rem 1.25rem;
+  border-radius: 0 8px 8px 0;
+  margin: 1.2rem 0;
+  line-height: 1.6;
+}
+
+.lineage-tree-block {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.lineage-card {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.lineage-card h5 {
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.lineage-card p {
+  font-size: 0.88rem;
+  color: #e2e8f0;
+}
+
+/* ==========================================================================
+   RESPONSIVE QUERIES
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .map-workspace,
+  .armory-layout,
+  .court-hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .canvas-container {
+    height: 440px;
+  }
+
+  .weapon-3d-canvas-wrap {
+    height: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .imperial-header {
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 0.8rem 1rem;
+  }
+
+  .nav-tabs {
+    width: 100%;
+    overflow-x: auto;
+    justify-content: flex-start;
+  }
+
+  .app-view {
+    padding: 1rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gtav-radar-hud {
+    width: 150px;
+    height: 150px;
+    bottom: 12px;
+    right: 12px;
+  }
+}
+
+/* ==========================================================================
+   ROYAL FLAG & IMPERIAL BANNER WAVING ANIMATIONS
+   ========================================================================== */
+.royal-flag-banner {
+  width: 140px;
+  height: 88px;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.8),
+    0 0 15px rgba(245, 158, 11, 0.3);
+  transform-origin: left center;
+  animation: flagWave3D 3.5s ease-in-out infinite alternate;
+  display: block;
+}
+
+@keyframes flagWave3D {
+  0% {
+    transform: perspective(400px) rotateY(0deg) skewY(0deg);
+  }
+  33% {
+    transform: perspective(400px) rotateY(-9deg) skewY(2.5deg);
+  }
+  66% {
+    transform: perspective(400px) rotateY(7deg) skewY(-2deg);
+  }
+  100% {
+    transform: perspective(400px) rotateY(-5deg) skewY(1deg);
+  }
+}
+

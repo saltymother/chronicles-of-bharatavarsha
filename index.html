@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chronicles of Bharatavarsha | 320 BCE — 2026 CE</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- IMPERIAL HEADER & NAVIGATION -->
+  <header class="imperial-header">
+    <div class="brand-container">
+      <!-- Royal Ashoka Chakra Emblem SVG -->
+      <svg class="ashoka-emblem-icon" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="46" fill="none" stroke="#f59e0b" stroke-width="4"/>
+        <circle cx="50" cy="50" r="40" fill="none" stroke="#d97706" stroke-width="1.5"/>
+        <circle cx="50" cy="50" r="8" fill="#1e3a8a"/>
+        <!-- 24 Royal Spokes -->
+        <g stroke="#f59e0b" stroke-width="2">
+          <line x1="50" y1="10" x2="50" y2="90"/>
+          <line x1="10" y1="50" x2="90" y2="50"/>
+          <line x1="21.7" y1="21.7" x2="78.3" y2="78.3"/>
+          <line x1="21.7" y1="78.3" x2="78.3" y2="21.7"/>
+          <line x1="34.6" y1="14.6" x2="65.4" y2="85.4"/>
+          <line x1="14.6" y1="34.6" x2="85.4" y2="65.4"/>
+          <line x1="14.6" y1="65.4" x2="85.4" y2="34.6"/>
+          <line x1="34.6" y1="85.4" x2="65.4" y2="14.6"/>
+        </g>
+      </svg>
+      <div class="brand-text">
+        <h1>CHRONICLES OF BHARATAVARSHA</h1>
+        <div class="subtitle">320 BCE — 2026 CE • INDIAN SUBCONTINENT HISTORICAL ENGINE</div>
+      </div>
+    </div>
+
+    <!-- MAIN APP TABS -->
+    <nav class="nav-tabs">
+      <button class="nav-tab-btn active" data-tab="gallery">
+        <span>🏛️</span> 3D Picture Frames
+      </button>
+      <button class="nav-tab-btn" data-tab="map">
+        <span>🗺️</span> Conquest Map & Radar
+      </button>
+      <button class="nav-tab-btn" data-tab="armory">
+        <span>⚔️</span> 3D Imperial Armory
+      </button>
+      <button class="nav-tab-btn" data-tab="eic">
+        <span>📜</span> East India Company
+      </button>
+    </nav>
+
+    <!-- AUDIO SOUNDBOARD & CONTROLS -->
+    <div class="header-controls">
+      <button class="btn-icon" id="playShankhaBtn" title="Sound Sacred War Conch (Shankha)">
+        🎺
+      </button>
+      <button class="btn-icon" id="playDrumsBtn" title="Sound Imperial War Drums (Nagada)">
+        🥁
+      </button>
+      <button class="playback-btn" id="ambientMusicBtn" style="font-size: 0.75rem; padding: 0.35rem 0.75rem;">
+        🎵 Play Palace Ambience
+      </button>
+      <button class="btn-icon" id="toggleSoundBtn" title="Toggle Sound">
+        🔊
+      </button>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       VIEW 1: 3D PICTURE FRAME DYNASTY GALLERY
+       ========================================================================== -->
+  <section class="app-view active" id="view-gallery">
+    <div class="section-hero">
+      <h2>Imperial Hall of Dynasties & Sovereign Rulers</h2>
+      <p>
+        Explore the glorious dynasties that shaped the Indian subcontinent from 322 BCE to 2026 CE.
+        Interact with each <strong>3D Gilded Picture Frame</strong> and click <em>"Enter Picture Frame"</em>
+        to step into the Royal Court to examine the Sovereign, Queen, Royal Lineage, Sons, and Monumental Achievements.
+      </p>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- Dynasties populated dynamically by app.js -->
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       VIEW 2: SUBCONTINENT TERRITORIAL MAP & ANNEXATION ENGINE
+       ========================================================================== -->
+  <section class="app-view" id="view-map">
+    <div class="section-hero" style="margin-bottom: 1.5rem;">
+      <h2>Subcontinent Territorial Conquest & Annexation Engine</h2>
+      <p>
+        Track the rise and fall of empires across 2,348 years of history.
+        Scrub the chronological timeline to witness territories gained, annexed, or lost in real-time,
+        synchronized with the <strong>GTA V Radar Mini-Map</strong>.
+      </p>
+    </div>
+
+    <div class="map-workspace">
+      <!-- Left: Interactive Canvas Map & Scrubber -->
+      <div>
+        <div class="map-viewport-card">
+          <div class="map-header-bar">
+            <div class="map-title-wrap">
+              <span>🧭</span>
+              <h3>Subcontinent Vector Cartography (60°E – 98°E | 6°N – 38°N)</h3>
+            </div>
+            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-cyan);">
+              CLICK & DRAG TO PAN • SCROLL TO ZOOM • CLICK CITIES
+            </div>
+          </div>
+
+          <div class="canvas-container">
+            <canvas id="subcontinentMapCanvas"></canvas>
+            <div class="map-controls-float">
+              <button class="map-control-btn" id="zoomInBtn" title="Zoom In">+</button>
+              <button class="map-control-btn" id="zoomOutBtn" title="Zoom Out">−</button>
+              <button class="map-control-btn" id="resetMapBtn" title="Reset View">⟲</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Timeline Scrubber Card -->
+        <div class="timeline-scrubber-card">
+          <div class="timeline-scrubber-header">
+            <div>
+              <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase;">
+                Chronological Epoch:
+              </span>
+              <div class="active-year-display" id="activeYearDisplay">322 BCE</div>
+            </div>
+
+            <div class="timeline-playback-btn-group">
+              <button class="playback-btn" id="prevEventBtn">⏮ Prev Era</button>
+              <button class="playback-btn" id="playTimelineBtn">▶️ Play Chronicles</button>
+              <button class="playback-btn" id="nextEventBtn">Next Era ⏭</button>
+            </div>
+          </div>
+
+          <input type="range" class="timeline-slider-range" id="timelineSlider" min="0" max="19" value="0">
+
+          <div class="timeline-milestones-ticks">
+            <span>322 BCE (Chandragupta)</span>
+            <span>261 BCE (Ashoka)</span>
+            <span>350 CE (Guptas)</span>
+            <span>1025 CE (Cholas)</span>
+            <span>1526 CE (Mughals)</span>
+            <span>1674 CE (Shivaji)</span>
+            <span>1757 CE (Plassey)</span>
+            <span>1857 CE (Rebellion)</span>
+            <span>1947 CE (Freedom)</span>
+            <span>2026 CE</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Territorial Annexation & Loss Ledger -->
+      <aside class="annexation-ledger-card">
+        <div class="ledger-header">
+          <span class="badge" id="ledgerDynastyBadge">322 BCE</span>
+          <h4 id="ledgerTitle">Rise of Chandragupta Maurya</h4>
+        </div>
+
+        <div class="ledger-field">
+          <span class="ledger-field-name">👑 Ruler / Victorious Commander:</span>
+          <span class="ledger-field-val" id="ledgerRuler">Chandragupta Maurya & Acharya Chanakya</span>
+        </div>
+
+        <div class="annexation-box">
+          <div class="annexation-box-label">📍 Territory Annexed / Gained:</div>
+          <div class="annexation-box-content" id="ledgerAnnexed">
+            Magadha, Bihar, Bengal, Eastern Uttar Pradesh
+          </div>
+        </div>
+
+        <div class="annexation-box loss">
+          <div class="annexation-box-label">⚠️ Territory Lost / Extinguished:</div>
+          <div class="annexation-box-content" id="ledgerLost">
+            Nanda Dynasty completely dissolved
+          </div>
+        </div>
+
+        <div class="ledger-field">
+          <span class="ledger-field-name">📜 Historical Significance:</span>
+          <p class="ledger-field-val" id="ledgerDesc" style="line-height: 1.5;">
+            Chandragupta overthrows Dhana Nanda in Pataliputra, establishing Mauryan control over the Gangetic Basin.
+          </p>
+        </div>
+
+        <div class="ledger-field">
+          <span class="ledger-field-name">🎯 Radar Coordinates:</span>
+          <span class="ledger-field-val" id="ledgerCoords" style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--accent-cyan);">
+            LAT: 25.61° N | LON: 85.14° E
+          </span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       VIEW 3: 3D IMPERIAL ARMORY (WEAPONS DECK)
+       ========================================================================== -->
+  <section class="app-view" id="view-armory">
+    <div class="section-hero" style="margin-bottom: 1.5rem;">
+      <h2>3D Imperial Subcontinent Armory & Weapon Metallurgy</h2>
+      <p>
+        Inspect legendary Indian weapons rendered in real-time WebGL 3D.
+        Experience authentic Damascus (Wootz) steel, rotating perspectives,
+        firing recoil mechanisms, and tactical combat histories.
+      </p>
+    </div>
+
+    <!-- Weapon Selector Chips -->
+    <div class="weapon-selector-strip" id="weaponChipsContainer">
+      <!-- Chips populated dynamically by app.js -->
+    </div>
+
+    <div class="armory-layout" style="margin-top: 1rem;">
+      <!-- 3D WebGL Canvas Stage -->
+      <div class="weapon-stage-card">
+        <div class="weapon-stage-header">
+          <div>
+            <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-gold); text-transform: uppercase;">
+              WebGL 3D Weapon Forge:
+            </span>
+            <h4 id="weaponDossierTitle" style="font-family: var(--font-display); color: #ffffff; font-size: 1.25rem;">
+              Khanda (The Double-Edged Holy Broadsword)
+            </h4>
+          </div>
+          <span class="reign-badge" id="weaponDossierHindi">खांडा</span>
+        </div>
+
+        <div class="weapon-3d-canvas-wrap">
+          <canvas id="weapon3DCanvas"></canvas>
+
+          <!-- Interactive 3D Toolbar -->
+          <div class="armory-toolbar">
+            <div class="armory-tool-group">
+              <button class="armory-action-btn battle-strike-btn" id="weaponActionBtn">
+                ⚡ Test Weapon Strike
+              </button>
+              <button class="armory-action-btn" id="weaponDamascusToggle">
+                ✨ Damascus: ON
+              </button>
+              <button class="armory-action-btn" id="weaponWireframeToggle">
+                🕸️ Wireframe
+              </button>
+            </div>
+
+            <div class="armory-tool-group">
+              <select id="weaponLightingSelect" style="background: rgba(15, 23, 42, 0.9); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.2); padding: 0.35rem 0.6rem; border-radius: 6px; font-size: 0.75rem;">
+                <option value="golden_palace">Royal Golden Hall</option>
+                <option value="forge_fire">Blacksmith Forge</option>
+                <option value="moonlit_battle">Moonlit Battlefield</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Side Weapon Dossier -->
+      <aside class="weapon-dossier-card">
+        <div class="weapon-title-block">
+          <h3 id="weaponDossierTitleSide">Tactical Dossier</h3>
+          <p id="weaponDossierDesc" style="font-size: 0.88rem; color: #cbd5e1; line-height: 1.6; margin-top: 0.4rem;">
+            The premier heavy sword of ancient and medieval India. Engineered with a broadening blunt-tipped spatulate blade and a reinforced spinal rib along the back.
+          </p>
+        </div>
+
+        <!-- Specs Table -->
+        <table class="weapon-specs-table" id="weaponDossierSpecs">
+          <!-- Populated by app.js -->
+        </table>
+
+        <!-- Tactical Performance Meters -->
+        <div>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-gold); text-transform: uppercase; font-weight: 700;">
+            Tactical Combat Ratings:
+          </span>
+
+          <div class="stat-bar-row">
+            <div class="stat-label-wrap">
+              <span>Combat Reach</span>
+              <span>88%</span>
+            </div>
+            <div class="stat-track"><div class="stat-fill" id="statReach" style="width: 88%;"></div></div>
+          </div>
+
+          <div class="stat-bar-row">
+            <div class="stat-label-wrap">
+              <span>Kinetic Cleaving Power</span>
+              <span>96%</span>
+            </div>
+            <div class="stat-track"><div class="stat-fill" id="statDamage" style="width: 96%; background: linear-gradient(90deg, #ea580c, #dc2626);"></div></div>
+          </div>
+
+          <div class="stat-bar-row">
+            <div class="stat-label-wrap">
+              <span>Armor Piercing Capability</span>
+              <span>85%</span>
+            </div>
+            <div class="stat-track"><div class="stat-fill" id="statArmor" style="width: 85%; background: linear-gradient(90deg, #38bdf8, #2563eb);"></div></div>
+          </div>
+        </div>
+
+        <div>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan); text-transform: uppercase; font-weight: 700;">
+            ⚔️ Historical Warriors Who Deployed It:
+          </span>
+          <ul id="weaponDossierUsers" style="padding-left: 1.25rem; font-size: 0.82rem; color: #cbd5e1; margin-top: 0.3rem;">
+            <!-- Populated by app.js -->
+          </ul>
+        </div>
+
+        <div class="annexation-box">
+          <div class="annexation-box-label">🏆 Decisive Battle:</div>
+          <div class="annexation-box-content" id="weaponDossierBattle">
+            Battle of Haldighati (1576) & Battle of Chamkaur (1704)
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       VIEW 4: EAST INDIA COMPANY EXPANSION CHRONICLES
+       ========================================================================== -->
+  <section class="app-view" id="view-eic">
+    <div class="eic-hero">
+      <h2>The East India Company & The British Raj (1600 – 1947)</h2>
+      <p style="color: var(--text-muted); max-width: 820px; margin: 0.5rem auto 1.5rem;">
+        How a private London joint-stock trading company transformed into a militarized colonial empire
+        through the Battle of Plassey, the Doctrine of Lapse, the Subsidiary Alliance system, and the 1857 Uprising,
+        leading to direct Crown rule and ultimate Indian Independence in 1947.
+      </p>
+    </div>
+
+    <div class="eic-stages-timeline" id="eicStagesContainer">
+      <!-- Populated dynamically by app.js -->
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       GTA V STYLE RADAR / MINI-MAP HUD (FIXED ON CORNER)
+       ========================================================================== -->
+  <div class="gtav-radar-hud" id="gtavRadarWidget" title="GTA V Tactical Mini-Map: Click to open full tactical view">
+    <div class="gtav-hud-coordinates" id="hudCoordinates">
+      GPS: 25.61° N, 85.14° E | 322 BCE
+    </div>
+
+    <canvas id="gtavMiniMapCanvas" width="220" height="220"></canvas>
+
+    <div class="gtav-hud-bars">
+      <div class="hud-bar-slot" title="Imperial Stability / Dharma"><div class="hud-bar-inner"></div></div>
+      <div class="hud-bar-slot" title="Army Strength (Infantry & War Elephants)"><div class="hud-bar-inner armor"></div></div>
+      <div class="hud-bar-slot" title="Imperial Treasury (Gold Coinage)"><div class="hud-bar-inner special"></div></div>
+    </div>
+
+    <div class="radar-expand-hint">CLICK TO EXPAND</div>
+  </div>
+
+  <!-- ==========================================================================
+       IMPERIAL COURT ROOM MODAL ("INSIDE THE 3D PICTURE FRAME")
+       ========================================================================== -->
+  <div class="court-modal-backdrop" id="courtModal">
+    <div class="court-modal-container">
+      <button class="court-modal-close-btn" id="courtModalClose" title="Exit Court Room">✕</button>
+      <div class="court-modal-body" id="courtModalContent">
+        <!-- Content rendered on the fly when entering a frame -->
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS LOAD ORDER -->
+  <script src="dynasties_data.js"></script>
+  <script src="audio_fx.js"></script>
+  <script src="subcontinent_map.js"></script>
+  <script src="weapons_3d.js"></script>
+  <script src="app.js"></script>
+
+  <!-- Map Zoom Button Bindings -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const zoomIn = document.getElementById("zoomInBtn");
+      const zoomOut = document.getElementById("zoomOutBtn");
+      const resetMap = document.getElementById("resetMapBtn");
+
+      if (zoomIn) zoomIn.addEventListener("click", () => {
+        if (window.mapEngine) window.mapEngine.zoomIn();
+      });
+      if (zoomOut) zoomOut.addEventListener("click", () => {
+        if (window.mapEngine) window.mapEngine.zoomOut();
+      });
+      if (resetMap) resetMap.addEventListener("click", () => {
+        if (window.mapEngine) window.mapEngine.resetView();
+      });
+    });
+  </script>
+</body>
+</html>
